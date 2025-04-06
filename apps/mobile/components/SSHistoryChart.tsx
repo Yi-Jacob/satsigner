@@ -171,8 +171,11 @@ function SSHistoryChart({ transactions, utxos }: SSHistoryChartProps) {
     })
   }, [transactions])
   const timeOffset =
-    new Date(currentDate.current).setDate(currentDate.current.getDate() + 10) -
-    chartData[0].date.getTime()
+    chartData.length > 0
+      ? new Date(currentDate.current).setDate(
+          currentDate.current.getDate() + 10
+        ) - chartData[0].date.getTime()
+      : 0
   const margin = { top: 30, right: 10, bottom: 80, left: 40 }
   const [containerSize, setContainersize] = useState({ width: 0, height: 0 })
   const prevScale = useRef<number>(1)
